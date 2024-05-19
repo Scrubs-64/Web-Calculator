@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculador</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="calculadorBody">
+        <input id="display" readonly>
+        <div id="panouButoane">
+            <button onclick="puneInDisplay('+')" class="operationButton">+</button>
+            <button onclick="puneInDisplay('7')">7</button>
+            <button onclick="puneInDisplay('8')">8</button>
+            <button onclick="puneInDisplay('9')">9</button>
+            <button onclick="puneInDisplay('-')"class="operationButton">-</button>
+            <button onclick="puneInDisplay('4')">4</button>
+            <button onclick="puneInDisplay('5')">5</button>
+            <button onclick="puneInDisplay('6')">6</button>
+            <button onclick="puneInDisplay('*')" class="operationButton">x</button>
+            <button onclick="puneInDisplay('1')">1</button>
+            <button onclick="puneInDisplay('2')">2</button>
+            <button onclick="puneInDisplay('3')">3</button>
+            <button onclick="puneInDisplay('/')" class="operationButton">:</button>
+            <button onclick="puneInDisplay('0')">0</button>
+            <button onclick="puneInDisplay('.')">.</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="clearDisplay()" class="operationButton">C</button>
+            <button onclick="deleteFromDisplay()" class="delButton"></button>
+        </div>
+
+    </div>
+    <script>
+
+//interactiune cu display
+const display = document.getElementById("display");
+var fakeDisplay="";
+
+function puneInDisplay(input){
+    fakeDisplay+=input;
+    switch (input){
+        case '*':
+            display.value+='x';
+            break;
+        case '/':
+            display.value+=':';
+            break;
+        default:
+            display.value+=input;
+            break;
+    }   
+}
+
+//calculeaza ce e in fakeDisplay si pune in display
+function calculate(){
+    try{
+    fakeDisplay=eval(fakeDisplay);
+    display.value=fakeDisplay;
+    }
+    catch(error){
+        display.value="Error";
+    }
+}
+function deleteFromDisplay(){
+    fakeDisplay=fakeDisplay.slice(0,-1);
+    display.value=fakeDisplay;
+}
+
+function clearDisplay(){
+display.value="";
+fakeDisplay="";
+}
+    </script>
+</body>
+
+</html>
